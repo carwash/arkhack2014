@@ -1,0 +1,9 @@
+---
+path: ../cache/
+dsn:
+    dbms: Pg
+    hostname: localhost
+    port: 5432
+    username: my-db-user
+    password: super-secret-password
+    database: rundata
