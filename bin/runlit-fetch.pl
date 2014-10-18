@@ -142,7 +142,7 @@ sub browse_results {
 					if ($+{x} >= $+{y}) { # End if this is the last result in the set.
 						$tree->delete;
 						return(1, $signum, $records);
-						}
+					}
 					$tree->delete;
 					$hit = $mech->uri()->as_string();
 					$hit =~ s/_(\d+)$/'_' . ($1 + 1)/e; # The next result in the set is this one, +1:
@@ -343,12 +343,6 @@ sub fix_urls {
 				# Get the permanent URI (not the PDF!):
 				$uris{$uri} = resolve(join('', 'http://', $+{divaprovider}, '.diva-portal.org/smash/record.jsf?pid=diva2:', $+{divaid}));
 			}
-			else {
-				die "Can't come here!\n";
-			}
-		}
-		else {
-			die "Can't come here!\n";
 		}
 	}
 

@@ -51,7 +51,7 @@ fmis:10001201490001 ksam:isDescribedBy libris:2842617 .
 fmis:10001402270001 ksam:isDescribedBy libris:10495306, libris:10814355, libris:1275228, libris:7223122, libris:7402872, libris:7791983, libris:849575 .
 fmis:10001500220001 ksam:isDescribedBy libris:4761563, libris:7449470 .
 fmis:10001501010001 ksam:isDescribedBy libris:10476784, libris:10814355, libris:1275228 .
-fmis:10001501920001 ksam:isDescribedBy libris:2731170 .
+fmis:10001501920001 ksam:isDescribedBy libris:2731170, libris:7402827, libris:7668222, libris:7755996, libris:8191837 .
 fmis:10001700320001 ksam:isDescribedBy libris:7402918, libris:7791983 .
 fmis:10001700320002 ksam:isDescribedBy libris:7402918 .
 fmis:10001700320003 ksam:isDescribedBy libris:7402918 .
@@ -181,6 +181,8 @@ fmis:10004500260001 ksam:isDescribedBy libris:48498, libris:7791983 .
 fmis:10004500540001 ksam:isDescribedBy libris:4761563, libris:7791983 .
 fmis:10004500570001 ksam:isDescribedBy libris:10495306, libris:7791983 .
 fmis:10004500880001 ksam:isDescribedBy libris:48498, libris:7791983 .
+fmis:10004500990001 ksam:isDescribedBy libris:7223122 .
+fmis:10004500990002 ksam:isDescribedBy libris:7223122 .
 fmis:10004500990003 ksam:isDescribedBy libris:7223122 .
 fmis:10004600380001 ksam:isDescribedBy libris:7449470 .
 fmis:10004600390001 ksam:isDescribedBy libris:7449470 .
@@ -378,7 +380,7 @@ fmis:10009500140002 ksam:isDescribedBy libris:468849, libris:48498 .
 fmis:10009500340001 ksam:isDescribedBy libris:7759980 .
 fmis:10009500370001 ksam:isDescribedBy libris:10495306, libris:10814355, libris:1275228, libris:3258276, libris:4658823, libris:7223122, libris:8347682, libris:9061814 .
 fmis:10009500660002 ksam:isDescribedBy libris:10149014, libris:10814355, libris:1275228, libris:2344947, libris:2352117, libris:2532275, libris:2565431, libris:265221, libris:7759980, libris:9253171 .
-fmis:10009601300101 ksam:isDescribedBy libris:1449180 .
+fmis:10009601300101 ksam:isDescribedBy libris:1449180, libris:7223122 .
 fmis:10009602120002 ksam:isDescribedBy libris:1449180 .
 fmis:10009602660201 ksam:isDescribedBy libris:1449180, libris:1466256, libris:4658823, libris:639789, libris:7223122, libris:7648597, libris:7668461, libris:8191837, libris:8347317 .
 fmis:10009603230001 ksam:isDescribedBy libris:1449180, libris:426355 .
@@ -523,6 +525,7 @@ fmis:10012304770001 ksam:isDescribedBy libris:10238183, libris:10814355, libris:
 fmis:10012304980001 ksam:isDescribedBy libris:11857888 .
 fmis:10012305100001 ksam:isDescribedBy libris:1668596, libris:7652609, libris:9160444 .
 fmis:10012504320001 ksam:isDescribedBy libris:7791983 .
+fmis:10012600060001 ksam:isDescribedBy libris:10238183, libris:10814355, libris:1275228, libris:1475685, libris:2383187, libris:2513932, libris:4761563, libris:7402827, libris:7668461, libris:7791983, libris:8347317 .
 fmis:10012600130001 ksam:isDescribedBy libris:10814355, libris:1275228, libris:7791983 .
 fmis:10012600610001 ksam:isDescribedBy libris:10814355, libris:1275228, libris:1789813, libris:2532275, libris:468849, libris:7759980, libris:7791983 .
 fmis:10012600610002 ksam:isDescribedBy libris:10134609, libris:3316274, libris:4658823, libris:7791983, libris:899280, libris:912664 .
@@ -916,7 +919,7 @@ fmis:10032300350001 ksam:isDescribedBy libris:7745177 .
 fmis:10032302300001 ksam:isDescribedBy libris:7223122 .
 fmis:10032302300002 ksam:isDescribedBy libris:7223122 .
 fmis:10032600820001 ksam:isDescribedBy libris:10587555, libris:10814355, libris:1275228, libris:2383182, libris:7745177 .
-fmis:10032601490001 ksam:isDescribedBy libris:10476784, libris:7223122, libris:7745177 .
+fmis:10032601490001 ksam:isDescribedBy libris:10476784, libris:2165822, libris:7223122, libris:7745177 .
 fmis:10032700510001 ksam:isDescribedBy libris:2532275, libris:7402751, libris:7745177, libris:7759980, libris:8526107 .
 fmis:10032700660001 ksam:isDescribedBy libris:1236598, libris:439557, libris:639789, libris:7223122, libris:7644789, libris:7648597, libris:7745177 .
 fmis:10032701010001 ksam:isDescribedBy libris:10238183, libris:10814355, libris:1236598, libris:1275228, libris:1475685, libris:2140331, libris:439557, libris:613508, libris:639789, libris:7223122, libris:7402827, libris:7648597, libris:7745177, libris:8392768, libris:912664 .
@@ -1073,7 +1076,7 @@ fmis:10037900440004 ksam:isDescribedBy libris:10476784, libris:7745177, libris:7
 fmis:10037900450002 ksam:isDescribedBy libris:10476784, libris:1236598, libris:2364474, libris:639789, libris:7223122, libris:7648597, libris:7745177, libris:7754115, libris:9928385 .
 fmis:10038000820001 ksam:isDescribedBy libris:7745177, libris:7759980 .
 fmis:10038201030001 ksam:isDescribedBy libris:10476784, libris:2165822, libris:7223122, libris:7745177 .
-fmis:10038201030002 ksam:isDescribedBy libris:10238183, libris:10476784, libris:10587555, libris:1466256, libris:1475685, libris:2570735, libris:439557, libris:4658823, libris:613508, libris:639789, libris:7223122, libris:7402872, libris:7644789, libris:7648597, libris:7668461, libris:7745177, libris:8347317, libris:8429032, libris:912664 .
+fmis:10038201030002 ksam:isDescribedBy libris:10238183, libris:10476784, libris:10587555, libris:1466256, libris:1475685, libris:2165822, libris:2570735, libris:439557, libris:4658823, libris:613508, libris:639789, libris:7223122, libris:7402872, libris:7644789, libris:7648597, libris:7668461, libris:7745177, libris:8347317, libris:8429032, libris:912664 .
 fmis:10038201050001 ksam:isDescribedBy libris:10476784, libris:2570735 .
 fmis:10038203010001 ksam:isDescribedBy libris:2570735, libris:7745177, libris:912664, libris:9135263 .
 fmis:10038300210001 ksam:isDescribedBy libris:1236598, libris:7745177, libris:8526107 .
@@ -1214,6 +1217,7 @@ fmis:10049300030001 ksam:isDescribedBy libris:426360, libris:4658823, libris:775
 fmis:10049300050001 ksam:isDescribedBy libris:9550303 .
 fmis:10049300140002 ksam:isDescribedBy libris:426360, libris:7666708 .
 fmis:10049300140003 ksam:isDescribedBy libris:426360, libris:7402827, libris:7666708 .
+fmis:10049300200001 ksam:isDescribedBy libris:13497388 .
 fmis:10049400680001 ksam:isDescribedBy libris:10238183, libris:1186319, libris:1202594, libris:1475685, libris:1494086, libris:1580612, libris:1613415, libris:2270749, libris:2634430, libris:285127, libris:396320, libris:396325, libris:440161, libris:5358567, libris:6916112, libris:7166741, libris:7348742, libris:7640674, libris:7668222, libris:7668461, libris:8347317, libris:884397 .
 fmis:10049400680002 ksam:isDescribedBy libris:7751774, libris:884397 .
 fmis:10049400680003 ksam:isDescribedBy libris:8128680 .
@@ -1446,6 +1450,7 @@ fmis:10083401680001 ksam:isDescribedBy libris:111096, libris:1382237, libris:148
 fmis:10083401710001 ksam:isDescribedBy libris:111096, libris:149826 .
 fmis:10083401720001 ksam:isDescribedBy libris:111096, libris:148319, libris:149826, libris:2326850, libris:7755996 .
 fmis:10083401850001 ksam:isDescribedBy libris:111096, libris:148319, libris:149826 .
+fmis:10083402160001 ksam:isDescribedBy libris:111096 .
 fmis:10083404040001 ksam:isDescribedBy libris:111096, libris:148319, libris:149826 .
 fmis:10083500210001 ksam:isDescribedBy libris:10868183, libris:148315, libris:148316, libris:2501326, libris:2513916, libris:3257968 .
 fmis:10083703370001 ksam:isDescribedBy libris:10868183, libris:12041497, libris:1209267, libris:148315, libris:148316, libris:2828886, libris:48498, libris:7609007, libris:8128680, libris:912664 .
@@ -1901,7 +1906,7 @@ fmis:10202200060002 ksam:isDescribedBy libris:602253, libris:8208945 .
 fmis:10202300680001 ksam:isDescribedBy libris:2800685, libris:2838104 .
 fmis:10203100060001 ksam:isDescribedBy libris:468849, libris:7402722, libris:8208945, libris:9253171 .
 fmis:10203200870001 ksam:isDescribedBy libris:2138056 .
-fmis:10203500130001 ksam:isDescribedBy libris:10722603, libris:11318020, libris:1209267, libris:12504225, libris:12533530, libris:12545906, libris:1502913, libris:1722545, libris:2022375, libris:2270749, libris:2360314, libris:2377490, libris:2828886, libris:2937617, libris:452168, libris:48497, libris:48498, libris:5295494, libris:602253, libris:6916112, libris:708857, libris:7278103, libris:7279409, libris:7348742, libris:7351542, libris:7403091, libris:7409540, libris:7431095, libris:7609007, libris:7640674, libris:7648597, libris:7668222, libris:7668461, libris:7755996, libris:8128680, libris:8208945, libris:8297494, libris:8347317, libris:8391297, libris:8462865, libris:8525512, libris:8870059 .
+fmis:10203500130001 ksam:isDescribedBy libris:10722603, libris:11318020, libris:1209267, libris:12504225, libris:12533530, libris:12545906, libris:14008397, libris:1502913, libris:1722545, libris:2022375, libris:2270749, libris:2360314, libris:2377490, libris:2828886, libris:2937617, libris:452168, libris:48497, libris:48498, libris:5295494, libris:602253, libris:6916112, libris:708857, libris:7278103, libris:7279409, libris:7348742, libris:7351542, libris:7403091, libris:7409540, libris:7431095, libris:7609007, libris:7640674, libris:7648597, libris:7668222, libris:7668461, libris:7755996, libris:8128680, libris:8208945, libris:8297494, libris:8347317, libris:8391297, libris:8462865, libris:8525512, libris:8870059 .
 fmis:10203800060001 ksam:isDescribedBy libris:8208945 .
 fmis:10203800060002 ksam:isDescribedBy libris:602253 .
 fmis:10204300010001 ksam:isDescribedBy libris:10808874, libris:602253, libris:693821, libris:8208945 .

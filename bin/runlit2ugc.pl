@@ -45,9 +45,10 @@ WHERE objecturi = ? AND relatedto = ?
 });
 
 my $insertsth = $ugcdbh->prepare(q{
-INSERT INTO content (objecturi, username, applicationid, relationtype, relatedto, comment) values (?,'carwash',1,'isDescribedBy',?,'Data från Samnordisk runtextdatabas och Svensk runbibliografi')
+INSERT INTO content (objecturi, username, applicationid, relationtype, relatedto, comment) values (?,'carwash',2,'isDescribedBy',?,'Data från Samnordisk runtextdatabas och Svensk runbibliografi')
 });
 
+open (my $SQL, '>', './srb-lit-ugc.sql');
 for my $record (@lit) { # For each record (work)…
 	next unless ((exists $record->{signa}) && (exists $record->{urls})); # Skip the work if it has no signa or URLs…
 	for my $signum (@{$record->{signa}}) { # For each signum that work concerns…
@@ -62,8 +63,10 @@ for my $record (@lit) { # For each record (work)…
 				}
 				unless (@found > 0) {
 					$insertsth->execute(join('', 'http://kulturarvsdata.se/raa/fmi/', $fmisid), $uri);
+					say $SQL sprintf(qq{INSERT INTO content (contentid, createdate, objecturi, relationtype, relatedto, username, applicationid, comment) VALUES ((SELECT nextval('content_seq') ), current_timestamp, 'http://kulturarvsdata.se/raa/fmi/%s','isDescribedBy','%s','carwash', 2, 'Data från Samnordisk runtextdatabas och Svensk runbibliografi' ) ;}, $fmisid, $uri);
 				}
 			}
 		}
 	}
 }
+close $SQL;
