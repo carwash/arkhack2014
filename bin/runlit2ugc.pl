@@ -22,12 +22,11 @@ my $rundbh = DBI->connect($rundsn, $conf{dsn}{username}, $conf{dsn}{password}, {
 my $ugcdsn = "DBI:$conf{dsn}{dbms}:database='ugc';host=$conf{dsn}{hostname};port=$conf{dsn}{port}";
 my $ugcdbh = DBI->connect($ugcdsn, $conf{dsn}{username}, $conf{dsn}{password}, {RaiseError => 1, AutoCommit => 1, pg_enable_utf8 => 1, pg_server_prepare => 1});
 
-# Get signa and corresponding FMIS-ids:
+# Get signa and corresponding URIs:
 my %signa;
 my $runsth = $rundbh->prepare(q{
-SELECT signum1, signum2, fmisid
-FROM objects_signa_unique JOIN object_nmr_se USING (objectid) JOIN nmr_se USING (nmr_seid)
-WHERE fmisid IS NOT NULL
+SELECT signum1, signum2, uri
+FROM objects_signa_unique JOIN object_uri USING (objectid) JOIN uris USING (uriid)
 ORDER BY objectid
 });
 $runsth->execute();
@@ -52,18 +51,19 @@ open (my $SQL, '>', './srb-lit-ugc.sql');
 for my $record (@lit) { # For each record (work)…
 	next unless ((exists $record->{signa}) && (exists $record->{urls})); # Skip the work if it has no signa or URLs…
 	for my $signum (@{$record->{signa}}) { # For each signum that work concerns…
-		next unless (exists $signa{$signum}); # Skip the signum if it is not in FMIS…
+		next unless (exists $signa{$signum}); # Skip the signum if it does not have a URI…
 		for my $uri (@{$record->{urls}}) { # For each URL the work is associated with…
-			next unless ($uri =~ m|^http://libris\.kb\.se/bib/|); # Skip the URL if it's not a Libris URI…
-			for my $fmisid (@{$signa{$signum}}) { # For each FMIS id this signum has…
+			next unless ($uri =~ m|^http://libris\.kb\.se/resource/bib/|); # Skip the URL if it's not a Libris URI…
+			for my $soch_uri (@{$signa{$signum}}) { # For each object id this signum has…
+				next unless ($soch_uri =~ m!^https?://kulturarvsdata\.se/!); # Skip if not a SOCH URI…
 				my @found;
-				$querysth->execute(join('', 'http://kulturarvsdata.se/raa/fmi/', $fmisid), $uri);
+				$querysth->execute($soch_uri, $uri);
 				while (my $contentid = $querysth->fetchrow_arrayref) {
 					push(@found, $contentid->[0]);
 				}
 				unless (@found > 0) {
-					$insertsth->execute(join('', 'http://kulturarvsdata.se/raa/fmi/', $fmisid), $uri);
-					say $SQL sprintf(qq{INSERT INTO content (contentid, createdate, objecturi, relationtype, relatedto, username, applicationid, comment) VALUES ((SELECT nextval('content_seq') ), current_timestamp, 'http://kulturarvsdata.se/raa/fmi/%s','isDescribedBy','%s','carwash', 2, 'Data från Samnordisk runtextdatabas och Svensk runbibliografi' ) ;}, $fmisid, $uri);
+					$insertsth->execute($soch_uri, $uri);
+					say $SQL sprintf(qq{INSERT INTO content (contentid, createdate, objecturi, relationtype, relatedto, username, applicationid, comment) VALUES ((SELECT nextval('content_seq') ), current_timestamp, '%s','isDescribedBy','%s','carwash', 2, 'Data från Samnordisk runtextdatabas och Svensk runbibliografi' ) ;}, $soch_uri, $uri);
 				}
 			}
 		}

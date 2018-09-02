@@ -1,20 +1,19 @@
 # ArkHack 2014
 
-Three scripts to connect Swedish runic inscriptions in [FMIS][] with literature written about them from [Libris][], using linked data; intended to enrich [K-samsök][]'s user-generated content. Written in brief moments here and there during the [Swedish National Heritage Board][RAÄ]'s [ArkHack 2.0][] in Umeå, April 2014.
+Three scripts to connect Swedish runic inscriptions in [SOCH][] with literature written about them from [Libris][], using linked data; intended to enrich [SOCH][]'s user-generated content. Written in brief moments here and there during the [Swedish National Heritage Board][RAÄ]'s [ArkHack 2.0][] in Umeå, April 2014.
 
 ---
 
 ([Skip to the end…](#output))
 
-The idea was to produce linked data connecting runic inscriptions to the literature describing them, for the user-generated content part of [K-samsök][]. There are five main sources of data required for this:
+The idea was to produce linked data connecting runic inscriptions to the literature describing them, for the user-generated content part of [SOCH][]. There are four main sources of data required for this:
 
-1. [K-samsök][], which assigns Swedish monuments URIs and harvests metadata about them from, among other sources…
-1. …[FMIS][], which uniquely identifies ancient monuments using a numeric id (used by K-samsök when minting its URIs);
+1. [SOCH][], which assigns Swedish monuments and artefacts URIs and harvests metadata about them from, among a variety of sources;
 1. [Libris][], which maintains URIs for literary objects;
 1. [Svensk runbibliografi][SRB], which contains bibliographic information about works concerning runic inscriptions. For our purposes, we're interested in these works' Libris URIs, and the runic signa of the inscriptions they're about;
-1. [Samnordisk runtextdatabas][SRDB], which contain masses of useful information about Scandinavian runic inscriptions but is interesting here only insomuch as it allows us to create a mapping between Swedish inscriptions' runic signa (which Svensk runbibliografi uses) and their numeric FMIS-ids (which K-samsök uses). This enables us to connect FMIS objects in K-samsök to Libris URIs from Svensk runbibliografi.
+1. [Samnordisk runtextdatabas][SRDB], which contain masses of useful information about Scandinavian runic inscriptions but is interesting here only insomuch as it allows us to create a mapping between Swedish inscriptions' runic signa (which Svensk runbibliografi uses) and their SOCH URIs). This enables us to connect monuments and artefacts in SOCH to Libris URIs from Svensk runbibliografi.
 
-The resulting scripts assume the admittedly unlikely scenario that you have a copy of Samnordisk runtextdatabas mapped to a structured, normalised relational database that you can query to get a list of all runic signa and their corresponding K-samsök URIs. Creating such a database is [left as an exercise for the reader](http://www.runinskrifter.net/), but without one these scripts are unlikely to be of much use unless you can provide the signa-to-FMIS/URI mapping by other means. Consequently, the final output of these scripts – [the interesting part!](#output) – is also provided here, so you don't actually have to run them yourself. :)
+The resulting scripts assume the admittedly unlikely scenario that you have a copy of Samnordisk runtextdatabas mapped to a structured, normalised relational database that you can query to get a list of all runic signa and their corresponding SOCH URIs. Creating such a database is [left as an exercise for the reader](http://www.runinskrifter.net/), but without one these scripts are unlikely to be of much use unless you can provide the signa-to-URI mapping by other means. Consequently, the final output of these scripts – [the interesting part!](#output) – is also provided here, so you don't actually have to run them yourself. :)
 
 ## `runlit-fetch.pl`
 
@@ -22,17 +21,17 @@ Svensk runbibliografi sadly has no web API or other similar method of directly q
 
 ## `runlit2ksam.pl`
 
-[`runlit2ksam.pl`](bin/runlit2ksam.pl) queries Samnordisk runtextdatabas to create a mapping between runic signa and FMIS ids (i.e. K-samsök URIs). It then reads in the cached bibliographic data from [`srb-lit.yml`](cache/srb-lit.yml) and proceeds to filter the data, looking only for works with Libris URIs which concern inscriptions which have FMIS ids. Using [RDF::Trine](http://www.perlrdf.org/), the resulting assertions are collated as RDF triples in a temporary (in-memory) triplestore before being dumped out as Turtle to [`srb-lit-soch.ttl`](cache/srb-lit-soch.ttl). *Ta-da!*
+[`runlit2ksam.pl`](bin/runlit2ksam.pl) queries Samnordisk runtextdatabas to create a mapping between runic signa SOCH URIs. It then reads in the cached bibliographic data from [`srb-lit.yml`](cache/srb-lit.yml) and proceeds to filter the data, looking only for works with Libris URIs which concern inscriptions which have SOCH URIs. Using [RDF::Trine](http://www.perlrdf.org/), the resulting assertions are collated as RDF triples in a temporary (in-memory) triplestore before being dumped out as Turtle to [`srb-lit-soch.ttl`](cache/srb-lit-soch.ttl). *Ta-da!*
 
 ## `runlit2ugc.pl`
 
-Does exactly the same as `runlit2ksam.pl` except that it assumes that you have access to K-samsök's actual UGC hub database (or a reasonable facsimile) and inserts the data there instead, rather than using actual RDF.
+Does exactly the same as `runlit2ksam.pl` except that it assumes that you have access to SOCH's actual UGC hub database (or a reasonable facsimile) and inserts the data there instead, rather than using actual RDF.
 
 ## Output
 
 TL;DR, here's-one-I-made-earlier:
 
-**[`srb-lit-soch.ttl`](cache/srb-lit-soch.ttl)** contains the RDF assertions relating runic inscriptions in FMIS to literature in Libris, as Turtle.
+**[`srb-lit-soch.ttl`](cache/srb-lit-soch.ttl)** contains the RDF assertions relating runic inscriptions in SOCH to literature in Libris, as Turtle.
 
 ## See also:
 
@@ -46,10 +45,9 @@ This program is free software; you can redistribute it and/or modify it under th
 
 See <http://www.perl.com/perl/misc/Artistic.html>
 
-[FMIS]: http://www.fmis.raa.se/cocoon/fornsok/
-[K-samsök]: http://www.ksamsok.se/
+[SOCH]: https://www.raa.se/ksamsok
 [Libris]: http://libris.kb.se/
-[RAÄ]: http://www.raa.se/
+[RAÄ]: https://www.raa.se/
 [ArkHack 2.0]: http://www.k-blogg.se/2014/04/15/arkhack-2-0/
 [SRDB]: http://www.nordiska.uu.se/forskn/samnord.htm
 [SRB]: http://fornsvenskbibliografi.ra.se/

@@ -189,6 +189,10 @@ sub extract_fields {
 	                        label => 'title of work',
 	                        action => sub {return(trim(shift))},
 	                       },
+	              PUBF  => { # Seems to occur only once, for the record of <http://libris.kb.se/resource/bib/12102929>
+	                        label => 'object of publication',
+	                        action => sub {return(trim(shift))},
+	                       },
 	              YEAR  => {
 	                        label => 'year',
 	                        action => sub {return(trim(shift))},
@@ -353,6 +357,7 @@ sub fix_urls {
 			if (exists $uris{$uri}) {
 				$uri = $uris{$uri}; # Replace the URL with a corrected version, where appropriate.
 			}
+			$uri =~ s|^http://libris\.kb\.se/bib/|http://libris\.kb\.se/resource/bib/|; # Replace Libris URLs with proper Libris URIs
 		}
 	}
 	say 'done.';
@@ -368,8 +373,8 @@ sub resolve {
 		warn "Could not fetch page for '$uri'; returned status $mech->status()\n";
 	}
 	my $tree = HTML::TreeBuilder::XPath->new_from_content($mech->content());
-	if ($tree->exists(q{//div[@class='diva2recordchoicetext']})) {
-		for ($tree->findvalues(q{//div[@class='diva2recordchoicetext']})) {
+	if ($tree->exists(q{/html/head/meta[@name='DC.Identifier.url']})) {
+		for ($tree->findvalues(q{/html/head/meta[@name='DC.Identifier.url']/@content})) {
 			next unless ($_ =~ m|http://urn\.kb\.se/resolve\?urn=|);
 			$uri = $_;
 		}
