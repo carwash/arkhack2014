@@ -45,18 +45,23 @@ my $model = RDF::Trine::Model->new($store);
 
 # Define namespaces:
 my %prefixes = (
-                bbr      => 'http://kulturarvsdata.se/raa/bbr/',
-                fmis     => 'http://kulturarvsdata.se/raa/fmi/',
-                gsm      => 'http://kulturarvsdata.se/GSM/objekt/',
-                ksam     => 'http://kulturarvsdata.se/ksamsok#',
-                kulturen => 'http://kulturarvsdata.se/Kulturen/objekt/',
-                libris   => 'http://libris.kb.se/resource/bib/',
-                nomu     => 'http://kulturarvsdata.se/nomu/object/',
-                shm      => 'http://kulturarvsdata.se/shm/object/',
-                shmart   => 'http://kulturarvsdata.se/shm/art/',
-                slm      => 'http://kulturarvsdata.se/SLM/item/',
-                solm     => 'http://kulturarvsdata.se/S-OLM/object/',
-                upmu     => 'http://kulturarvsdata.se/upmu/object/',
+                bbr        => 'http://kulturarvsdata.se/raa/bbr/',
+                fmis       => 'http://kulturarvsdata.se/raa/fmi/',
+                gsm        => 'http://kulturarvsdata.se/GSM/objekt/',
+                jm         => 'http://kulturarvsdata.se/JM/object/',
+                ksam       => 'http://kulturarvsdata.se/ksamsok#',
+                kulturen   => 'http://kulturarvsdata.se/Kulturen/objekt/',
+                librisbib  => 'http://libris.kb.se/resource/bib/',
+                librisauth => 'http://libris.kb.se/resource/auth/',
+                librisxl   => 'https://libris.kb.se/',
+                nomu       => 'http://kulturarvsdata.se/nomu/object/',
+                shm        => 'http://kulturarvsdata.se/shm/object/',
+                shmart     => 'http://kulturarvsdata.se/shm/art/',
+                shminv     => 'http://kulturarvsdata.se/shm/inventory/',
+                skansen    => 'http://kulturarvsdata.se/sk/object/',
+                slm        => 'http://kulturarvsdata.se/SLM/item/',
+                solm       => 'http://kulturarvsdata.se/S-OLM/object/',
+                upmu       => 'http://kulturarvsdata.se/upmu/object/',
                );
 my $prefixes = RDF::Trine::NamespaceMap->new(\%prefixes);
 
@@ -68,11 +73,11 @@ for my $record (@lit) { # For each record (work)…
 	for my $signum (@{$record->{signa}}) { # For each signum that work concerns…
 		next unless (exists $signa{$signum}); # Skip the signum if it does not have a URI…
 		for my $uri (@{$record->{urls}}) { # For each URL the work is associated with…
-			next unless ($uri =~ m|^http://libris\.kb\.se/resource/bib/(?<librisid>.+)$|); # Skip the URL if it's not a Libris URI…
+			next unless ($uri =~ m|^https://libris\.kb\.se/(?<librisid>.+)$|); # Skip the URL if it's not a Libris URI…
 			my $librisid = $+{librisid};
 			for my $soch_uri (@{$signa{$signum}}) { # For each object id this signum has…
 				next unless ($soch_uri =~ m!^https?://kulturarvsdata\.se/!); # Skip if not a SOCH URI…
-				my $triple = RDF::Trine::Statement->new(RDF::Trine::Node::Resource->new($soch_uri), $predicate, $prefixes->libris($librisid)); # Generate a triple…
+				my $triple = RDF::Trine::Statement->new(RDF::Trine::Node::Resource->new($soch_uri), $predicate, $prefixes->librisxl($librisid)); # Generate a triple…
 				$model->add_statement($triple); # …and insert it!
 			}
 		}
